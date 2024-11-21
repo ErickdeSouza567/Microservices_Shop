@@ -16,6 +16,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)
         ));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); /*  Isso faz com que o AutoMapper procure automaticamente todas as configurações 
+                                                                          *  de mapeamento (os "perfils") que você criou. Ele vai procurar por todos os 
+                                                                          *  arquivos do seu código onde você definiu como um tipo de dado (como Cliente) pode 
+                                                                          *  ser transformado em outro (como ClienteDTO).*/
 
 
 var app = builder.Build();
