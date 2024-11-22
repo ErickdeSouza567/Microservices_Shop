@@ -1,14 +1,12 @@
-﻿using LojaMicro.ApiProduto.Models;
-
-namespace LojaMicro.ApiProduto.Repositories
+﻿namespace LojaMicro.ApiProduto.Repositories
 {
-    public interface ICategoryRepository
-    {
-        Task<IEnumerable<Category>> GetAll();
-        Task<IEnumerable<Category>> GetCategoriesProducts();
-        Task<Category> GetById(int id);
-        Task<Category> Create(Category category);
-        Task<Category> Update(Category category);
-        Task<Category> Delete(int id);
-    }
+   public interface ICategoryRepository
+{
+    Task<IEnumerable<Category>> GetAll();
+    Task<IEnumerable<Category>> GetCategoriesProducts();
+    Task<Category> GetById(int id);
+    Task<Category> Create(Category category);
+    Task<Category> Update(Category category);
+    Task<Category> Delete(int id);
+}
 }
