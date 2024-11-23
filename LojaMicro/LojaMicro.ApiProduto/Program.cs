@@ -1,4 +1,6 @@
 using LojaMicro.ApiProduto.Context;
+using LojaMicro.ApiProduto.Repositories;
+using LojaMicro.ApiProduto.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,10 +19,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         ));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); /*  Isso faz com que o AutoMapper procure automaticamente todas as configurações 
-                                                                          *  de mapeamento (os "perfils") que você criou. Ele vai procurar por todos os 
+                                                                            *  de mapeamento (os "perfils") que você criou. Ele vai procurar por todos os 
                                                                           *  arquivos do seu código onde você definiu como um tipo de dado (como Cliente) pode 
                                                                           *  ser transformado em outro (como ClienteDTO).*/
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

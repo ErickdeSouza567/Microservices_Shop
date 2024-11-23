@@ -1,4 +1,6 @@
-﻿namespace LojaMicro.ApiProduto.Repositories
+﻿using LojaMicro.ApiProduto.Models;
+
+namespace LojaMicro.ApiProduto.Repositories
 {
    public interface ICategoryRepository
 {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dG8U+1G5BAd2z3iYbkqwJIoBbxcVWyIkHmuxPomntvNAOOsVCnSPrUUI49QB16Pp8of4ISLmBJ6mzJuF0WHdGA==",
+  "dgSpecHash": "3LadDYTEWoc=",
   "success": true,
   "projectFilePath": "C:\\Users\\Erick\\Desktop\\LojaProjeto\\LojaMicro\\LojaMicro.ApiProduto\\LojaMicro.ApiProduto.csproj",
   "expectedPackageFiles": [
@@ -34,5 +34,16 @@
     "C:\\Users\\Erick\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Erick\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'Microsoft.Extensions.Caching.Memory' 6.0.1 tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
+      "libraryId": "Microsoft.Extensions.Caching.Memory",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
