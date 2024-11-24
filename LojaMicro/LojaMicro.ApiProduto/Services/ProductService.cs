@@ -1,5 +1,10 @@
 ﻿using LojaMicro.ApiProduto.Models;
 using Microsoft.EntityFrameworkCore;
+using LojaMicro.ApiProduto.DTOs;
+using LojaMicro.ApiProduto.Services;
+using LojaMicro.ApiProduto.Repositories;
+using AutoMapper; // Para IMapper
+
 
 namespace LojaMicro.ApiProduto.Services
 {
@@ -44,3 +49,4 @@ namespace LojaMicro.ApiProduto.Services
             await _productRepository.Delete(productEntity.Id);
         }
     }
+}

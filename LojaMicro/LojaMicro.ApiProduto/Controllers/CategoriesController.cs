@@ -1,7 +1,7 @@
-﻿using LojaMicro.ApiProduto.DTOs;
-using LojaMicro.ApiProduto.Services;
+﻿using LojaMicro.ApiProduto.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using LojaMicro.ApiProduto.DTOs;
 
 namespace LojaMicro.ApiProduto.Controllers
 {

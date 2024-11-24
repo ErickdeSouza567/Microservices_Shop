@@ -1,4 +1,5 @@
 ﻿namespace LojaMicro.ApiProduto.Models;
+using System.Text.Json.Serialization;
 
 public class Product
 {
@@ -9,6 +10,7 @@ public class Product
     public long Stock { get; set; }
     public string? ImageURL { get; set; }
 
+    [JsonIgnore]
     public Category? Category { get; set; }
     public int CategoryId { get; set; } 
 }

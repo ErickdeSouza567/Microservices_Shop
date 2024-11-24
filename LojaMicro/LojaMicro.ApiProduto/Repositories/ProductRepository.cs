@@ -44,4 +44,5 @@ namespace LojaMicro.ApiProduto.Repositories
             await _context.SaveChangesAsync();
             return product;
         }
-    }s
+    }
+}
