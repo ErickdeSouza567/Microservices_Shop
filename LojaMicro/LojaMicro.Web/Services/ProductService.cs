@@ -20,10 +20,9 @@ public class ProductService : IProductService
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
-    public async Task<IEnumerable<ProductViewModel>> GetAllProducts(string token)
+    public async Task<IEnumerable<ProductViewModel>> GetAllProducts()
     {
         var client = _clientFactory.CreateClient("ProductApi");
-        PutTokenInHeaderAuthorization(token, client);
 
         using (var response = await client.GetAsync(apiEndpoint))
         {
@@ -134,11 +133,6 @@ public class ProductService : IProductService
     {
         client.DefaultRequestHeaders.Authorization =
                    new AuthenticationHeaderValue("Bearer", token);
-    }
-
-    public Task<IEnumerable<ProductViewModel>> GetAllProducts()
-    {
-        throw new NotImplementedException();
     }
 
     public Task<ProductViewModel> FindProductsById(int id)
