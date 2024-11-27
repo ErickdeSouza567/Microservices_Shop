@@ -2,7 +2,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text;
-using LojaMicro.Web.Models;
 using LojaMicro.Web.Services.Contracts;
 
 namespace LojaMicro.Web.Services;
