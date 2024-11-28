@@ -4,5 +4,5 @@ using LojaMicro.Web.Models;
 
 public interface ICategoryService
 {
-    Task<IEnumerable<CategoryViewModel>> GetAllCategories()
+    Task<IEnumerable<CategoryViewModel>> GetAllCategories();
 }
