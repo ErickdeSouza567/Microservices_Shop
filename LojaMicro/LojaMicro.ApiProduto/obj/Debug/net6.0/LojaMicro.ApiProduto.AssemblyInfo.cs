@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LojaMicro.ApiProduto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9378e63bd16a23143b193ebc697e07ee7fd37e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c81424eb40f3d0b909a9f779932f3b62eaf4c15")]
 [assembly: System.Reflection.AssemblyProductAttribute("LojaMicro.ApiProduto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LojaMicro.ApiProduto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

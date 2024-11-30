@@ -53,7 +53,7 @@ public class ProductsController : Controller
             {
                 ViewBag.CategoryId = new SelectList(await _categoryService.GetAllCategories(), "CategoryId", "Name");
             }
-            return View(productVM);
         }
+        return View(productVM);
     }
 }
