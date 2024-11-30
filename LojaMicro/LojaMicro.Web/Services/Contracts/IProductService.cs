@@ -6,7 +6,7 @@ namespace LojaMicro.Web.Services.Contracts
     {
         Task<IEnumerable<ProductViewModel>> GetAllProducts();
 
-        Task<ProductViewModel> FindProductsById(int id);
+        Task<ProductViewModel> FindProductById(int id);
 
         Task<ProductViewModel> CreateProduct(ProductViewModel productVM);
 
