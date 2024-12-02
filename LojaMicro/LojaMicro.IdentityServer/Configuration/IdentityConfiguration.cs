@@ -10,7 +10,7 @@ namespace LojaMicro.IdentityServer.Configuration
 
         // Permite modelar um escopo que permitirá que um aplicativo cliente
         // exiba um subconjunto de declarações sobre um usuário.
-        // Ex:O escopo profile permite que o aplicativo veja declarações
+        // Ex: O escopo profile permite que o aplicativo veja declarações
         // sobre o usuário, como nome e data de nascimento
         public static IEnumerable<IdentityResource> IdentityResources =>
             new List<IdentityResource>
@@ -20,7 +20,7 @@ namespace LojaMicro.IdentityServer.Configuration
                 new IdentityResources.Profile()
             };
 
-        //Representam o que um aplicativo cliente tem permissão para fazer ou acessar
+        // Representam o que um aplicativo cliente tem permissão para fazer ou acessar
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
@@ -32,27 +32,30 @@ namespace LojaMicro.IdentityServer.Configuration
                 new ApiScope(name: "delete", "Delete data."),
             };
 
-        // Lista de Clientes(aplicativos) que podem usar seu sistema;
+        // Lista de Clientes (aplicativos) que podem usar seu sistema;
         // Cada aplicativo cliente é configurado para ter permissão apenas para fazer certas coisas
-        // Nossos clientes (vshop.web) vão solitar um token ao IdentityServer
+        // Nossos clientes (vshop.web) vão solicitar um token ao IdentityServer
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {
-               //cliente genérico
+                // Cliente genérico
                 new Client
                 {
                     ClientId = "client",
-                    ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256())},
-                    AllowedGrantTypes = GrantTypes.ClientCredentials, //precisa das credenciais do usuário
-                    AllowedScopes = {"read", "write", "profile" }
+                    ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials, // precisa das credenciais do usuário
+                    AllowedScopes = { "read", "write", "profile" }
                 },
                 new Client
                 {
                     ClientId = "vshop",
-                    ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256())},
-                    AllowedGrantTypes = GrantTypes.Code, //via codigo
-                    RedirectUris = {"https://localhost:7165/signin-oidc"},//login
-                    PostLogoutRedirectUris = {"https://localhost:7165/signout-callback-oidc"},//logout
+                    ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Code, // via código
+                    RedirectUris = {
+                        "https://localhost:7165/signin-oidc",   // URI original
+                        "https://localhost:7060/signin-oidc"    // URI adicional
+                    }, // login
+                    PostLogoutRedirectUris = { "https://localhost:7165/signout-callback-oidc" }, // logout
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
