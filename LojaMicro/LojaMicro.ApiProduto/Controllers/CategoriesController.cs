@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LojaMicro.ApiProduto.DTOs;
+using Microsoft.AspNetCore.Authorization;
+using LojaMicro.ApiProduto.Roles;
 
 namespace LojaMicro.ApiProduto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -75,6 +78,7 @@ namespace LojaMicro.ApiProduto.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<CategoryDTO>> Delete(int id)
         {
             var categoryDto = await _categoryService.GetCategoryById(id);

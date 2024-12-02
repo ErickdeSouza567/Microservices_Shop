@@ -1,5 +1,7 @@
 ﻿using LojaMicro.ApiProduto.DTOs;
+using LojaMicro.ApiProduto.Roles;
 using LojaMicro.ApiProduto.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +9,7 @@ namespace LojaMicro.ApiProduto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -62,6 +65,7 @@ namespace LojaMicro.ApiProduto.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<ProductDTO>> Delete(int id)
         {
             var produtoDto = await _productService.GetProductById(id);
