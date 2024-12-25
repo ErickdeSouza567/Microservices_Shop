@@ -20,9 +20,10 @@ public class ProductService : IProductService
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
-    public async Task<IEnumerable<ProductViewModel>> GetAllProducts()
+    public async Task<IEnumerable<ProductViewModel>> GetAllProducts(string token)
     {
         var client = _clientFactory.CreateClient("ProductApi");
+        PutTokenInHeaderAuthorization(token, client);
 
         using (var response = await client.GetAsync(apiEndpoint))
         {
@@ -42,9 +43,10 @@ public class ProductService : IProductService
 
 
 
-    public async Task<ProductViewModel> FindProductById(int id)
+    public async Task<ProductViewModel> FindProductById(int id, string token)
     {
         var client = _clientFactory.CreateClient("ProductApi");
+        PutTokenInHeaderAuthorization(token, client);
 
         using (var response = await client.GetAsync(apiEndpoint + id))
         {
@@ -88,9 +90,10 @@ public class ProductService : IProductService
         return productVM;
     }
 
-    public async Task<ProductViewModel> UpdateProduct(ProductViewModel productVM)
+    public async Task<ProductViewModel> UpdateProduct(ProductViewModel productVM, string token)
     {
         var client = _clientFactory.CreateClient("ProductApi");
+        PutTokenInHeaderAuthorization(token, client);
 
         ProductViewModel productUpdated = new ProductViewModel();
 
@@ -111,9 +114,10 @@ public class ProductService : IProductService
         return productUpdated;
     }
 
-    public async Task<bool> DeleteProductById(int id)
+    public async Task<bool> DeleteProductById(int id, string token)
     {
         var client = _clientFactory.CreateClient("ProductApi");
+        PutTokenInHeaderAuthorization(token, client);
 
         using (var response = await client.DeleteAsync(apiEndpoint + id))
         {
@@ -130,15 +134,5 @@ public class ProductService : IProductService
     {
         client.DefaultRequestHeaders.Authorization =
                    new AuthenticationHeaderValue("Bearer", token);
-    }
-
-    public Task<ProductViewModel> FindProductsById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<ProductViewModel> CreateProduct(ProductViewModel productVM)
-    {
-        throw new NotImplementedException();
     }
 }
