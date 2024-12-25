@@ -9,11 +9,9 @@ namespace LojaMicro.ApiProduto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
-
         public ProductsController(IProductService productService)
         {
             _productService = productService;
@@ -42,6 +40,7 @@ namespace LojaMicro.ApiProduto.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult> Post([FromBody] ProductDTO produtoDto)
         {
             if (produtoDto == null)
@@ -54,6 +53,7 @@ namespace LojaMicro.ApiProduto.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<ProductDTO>> Put([FromBody] ProductDTO produtoDto)
         {
             if (produtoDto == null)
