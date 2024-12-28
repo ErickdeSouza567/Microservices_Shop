@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{A1BC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaMicro.IdentityServer", "LojaMicro.IdentityServer\LojaMicro.IdentityServer.csproj", "{EF579086-94C7-49F5-B5DD-5DEA0AA820E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaMicro.CartApi", "WebApplication1\LojaMicro.CartApi.csproj", "{6AE35D5D-2E76-4ED7-A440-F743F0B9D2C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{EF579086-94C7-49F5-B5DD-5DEA0AA820E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF579086-94C7-49F5-B5DD-5DEA0AA820E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF579086-94C7-49F5-B5DD-5DEA0AA820E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE35D5D-2E76-4ED7-A440-F743F0B9D2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE35D5D-2E76-4ED7-A440-F743F0B9D2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE35D5D-2E76-4ED7-A440-F743F0B9D2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE35D5D-2E76-4ED7-A440-F743F0B9D2C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{39A5ED21-F625-4018-B5AC-67F181720C18} = {A1BC3F7A-3E97-493C-96A8-8DDEB23E5B67}
 		{E98C6E5A-EEDE-41BC-8A54-5C5D639ABF4B} = {7628909B-8CFD-44A8-9DAD-9DA2065A02A4}
 		{EF579086-94C7-49F5-B5DD-5DEA0AA820E9} = {A1BC3F7A-3E97-493C-96A8-8DDEB23E5B67}
+		{6AE35D5D-2E76-4ED7-A440-F743F0B9D2C3} = {A1BC3F7A-3E97-493C-96A8-8DDEB23E5B67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B391B5DA-7CBB-442C-B6A4-E65B797641DF}
