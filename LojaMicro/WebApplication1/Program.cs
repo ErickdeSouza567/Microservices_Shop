@@ -1,4 +1,5 @@
 using LojaMicro.CartApi.Context;
+using LojaMicro.CartApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -46,6 +47,11 @@ var mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnecti
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)
         ));
+
+
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 
 builder.Services.AddCors(options =>
 {
