@@ -9,6 +9,6 @@ namespace LojaMicro.CartApi.Models
         public int ProductId { get; set; }
         public int CartHeaderId { get; set; }
         public Product Product { get; set; } = new Product();
-        public CartHeader CartHeader { get; set; } = new CartHeader();
+        //public CartHeader CartHeader { get; set; } = new CartHeader();
     }
 }

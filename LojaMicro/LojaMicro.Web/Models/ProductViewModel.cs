@@ -14,6 +14,10 @@ namespace LojaMicro.Web.Models
         public string? Description { get; set; }
         [Required]
         public long Stock { get; set; }
+
+        [Range(1, 100)]
+        public int Quantity { get; set; } = 1;
+
         [Required]
         public string? ImageURL { get; set; }
 
