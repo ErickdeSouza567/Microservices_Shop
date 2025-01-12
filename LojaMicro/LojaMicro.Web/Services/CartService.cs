@@ -1,5 +1,7 @@
 ﻿using LojaMicro.Web.Models;
 using LojaMicro.Web.Services.Contracts;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 
 namespace LojaMicro.Web.Services;
@@ -17,14 +19,53 @@ public class CartService : ICartService
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
-    public Task<CartViewModel> GetCartByUserIdAsync(string userId, string token)
+    public async Task<CartViewModel> GetCartByUserIdAsync(string userId, string token)
     {
-        throw new NotImplementedException();
+        var client = _clientFactory.CreateClient("CartApi");
+
+        PutTokenInHeaderAuthorization(token, client);
+
+        using (var response = await client.GetAsync($"{apiEndpoint}/getcart/{userId}"))
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                var apiResponse = await response.Content.ReadAsStreamAsync();
+                cartVM = await JsonSerializer.DeserializeAsync<CartViewModel>
+                    (apiResponse, _options);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        return cartVM;
     }
 
-    public Task<CartViewModel> AddItemToCartAsync(CartViewModel cartVM, string token)
+    private void PutTokenInHeaderAuthorization(string token, HttpClient client)
     {
-        throw new NotImplementedException();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+    }
+
+    public async Task<CartViewModel> AddItemToCartAsync(CartViewModel cartVM, string token)
+    {
+        var client = _clientFactory.CreateClient("CartApi");
+        PutTokenInHeaderAuthorization(token, client);
+
+        StringContent content = new StringContent(JsonSerializer.Serialize(cartVM), Encoding.UTF8, "application/json");
+
+        using (var response = await client.PostAsync($"{apiEndpoint}/addcart/", content))
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                var apiResponse = await response.Content.ReadAsStreamAsync();
+                cartVM = await JsonSerializer.DeserializeAsync<CartViewModel>(apiResponse, _options);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        return cartVM ;
     }
 
     public Task<CartViewModel> UpdateCartAsync(CartViewModel cartVM, string token)
