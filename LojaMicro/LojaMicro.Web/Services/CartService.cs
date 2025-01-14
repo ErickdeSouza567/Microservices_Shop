@@ -65,17 +65,43 @@ public class CartService : ICartService
                 return null;
             }
         }
-        return cartVM ;
+        return cartVM;
     }
 
-    public Task<CartViewModel> UpdateCartAsync(CartViewModel cartVM, string token)
+    public async Task<CartViewModel> UpdateCartAsync(CartViewModel cartVM, string token)
     {
-        throw new NotImplementedException();
+        var client = _clientFactory.CreateClient("CartApi");
+        PutTokenInHeaderAuthorization(token, client);
+
+        CartViewModel cartUpdated = new CartViewModel();
+
+        using (var response = await client.PutAsJsonAsync($"{apiEndpoint}/updatecart/", cartVM))
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                var apiResponse = await response.Content.ReadAsStreamAsync();
+                cartUpdated = await JsonSerializer.DeserializeAsync<CartViewModel>(apiResponse, _options);
+            }
+            else
+            {
+                return null;
+            }
+        } return cartUpdated;
     }
 
-    public Task<bool> RemoveItemFromCartAsync(int cartId, string token)
+    public async Task<bool> RemoveItemFromCartAsync(int cartId, string token)
     {
-        throw new NotImplementedException();
+        var client = _clientFactory.CreateClient("CartApi");
+        PutTokenInHeaderAuthorization(token, client);
+
+        using (var response = await client.DeleteAsync($"{apiEndpoint}/deletecart/" + cartId))
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Task<bool> ApplyCouponAsync(CartViewModel cartVM, string couponCode, string token)
