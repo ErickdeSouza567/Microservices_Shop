@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LojaMicro.Web.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using LojaMicro.Web.Models;
+using Microsoft.AspNetCore.Authentication;
+
 
 namespace LojaMicro.Web.Controllers
 {
@@ -13,9 +17,40 @@ namespace LojaMicro.Web.Controllers
             _cartService = cartService;
         }
 
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            CartViewModel? cartVM = await GetCartByUser();
+
+            if(cartVM is null)
+            {
+                ModelState.AddModelError("CartNotFound", "Does not exist a cart yet... Come on Shopping...");
+                return View("/Views/Cart/CartNotFound.cshtml");
+            }
+
+            return View(cartVM);
+        }
+
+        private async Task<CartViewModel?> GetCartByUser()
+        {
+            var cart = await _cartService.GetCartByUserIdAsync(GetUserId(), await GetAccessToken());
+
+            if (cart?.CartHeader is null)
+            {
+                foreach (var item in cart.CartItems)
+                {
+                    cart.CartHeader.TotalAmount += (item.Product.Price * item.Quantity);
+                }
+            }
+            return cart;
+        }
+        private async Task<string> GetAccessToken()
+        {
+            return await HttpContext.GetTokenAsync("access_token");
+        }
+        private string GetUserId()
+        {
+            return User.Claims.Where(u => u.Type == "sub").FirstOrDefault().Value;
         }
     }
 }
