@@ -44,6 +44,20 @@ namespace LojaMicro.Web.Controllers
             }
             return cart;
         }
+
+        public async Task<IActionResult> RemoveItem(int id)
+        {
+            var result = await _cartService.RemoveItemFromCartAsync(id, await GetAccessToken());
+            if (result)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View(id);
+
+        }
+
+
+
         private async Task<string> GetAccessToken()
         {
             return await HttpContext.GetTokenAsync("access_token");
